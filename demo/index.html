@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>flv.js demo</title>
+    <link rel="stylesheet" type="text/css" href="demo.css"/>
+</head>
+
+<body>
+
+<div class="mainContainer">
+    <div class="controls">
+        <button onclick="flv_load()">Load</button>
+        <button onclick="flv_start()">Start</button>
+    </div>
+    <div class="video-container">
+        <div>
+            <video name="videoElement0" class="centeredVideo" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement1" class="centeredVideo" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement2" class="centeredVideo2" controls autoplay style="margin-top:-56.2%">
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement3" class="centeredVideo2" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement4" class="centeredVideo2" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement5" class="centeredVideo2" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+            <video name="videoElement6" class="centeredVideo2" controls autoplay>
+                Your browser is too old which doesn't support HTML5 video.
+            </video>
+        </div>
+    </div>
+</div>
+<script src="../dist/flv.js"></script>
+<script>
+    function flv_load(mediaDataSource) {
+        let num = document.getElementsByTagName("video").length;
+        if (flvjs.isSupported()) {
+            for (var i = 0; i < num; i++) {
+                var asd= flvjs.createPlayer({
+                    type: 'flv',
+                    isLive: true,
+                    url: 'http://192.168.0.200:81/live?port=1935&app=hls&stream=mystream',
+                });
+                let aaa='videoElement'+i
+                asd.attachMediaElement(document.getElementsByName(aaa)[0]);
+                asd.load();
+            }
+        }
+    }
+
+    //点击strat实现播放  暂停  效果
+    function flv_start() {
+        player.play();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        flv_load();
+    });
+</script>
+
+</body>
+
+</html>
